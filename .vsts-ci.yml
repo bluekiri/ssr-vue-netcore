@@ -1,0 +1,35 @@
+resources:
+- repo: self
+queue:
+  name: Hosted Linux Preview
+  demands: npm
+
+
+steps:
+- task: Npm@1
+  displayName: npm install
+  inputs:
+    verbose: false
+
+- task: Npm@1
+  displayName: npm run build
+  inputs:
+    command: custom
+    verbose: false
+    customCommand: 'run build'
+    
+- task: Npm@1
+  displayName: npm run lint
+  inputs:
+    command: custom
+    verbose: false
+    customCommand: 'run lint'
+
+- task: Npm@1
+  displayName: npm test
+  inputs:
+    command: custom
+    verbose: false
+    customCommand: test
+
+

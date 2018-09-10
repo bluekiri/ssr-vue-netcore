@@ -1,0 +1,14 @@
+<html>
+  <head>
+    <!-- use double mustache for HTML-escaped interpolation -->
+    <title>{{ title }}</title>
+    <!-- use triple mustache for non-HTML-escaped interpolation -->
+    {{{ meta }}}
+    <link href="{{page}}.css" rel="stylesheet" type="text/css"/>
+  </head>
+  <body>
+    <!--vue-ssr-outlet-->
+  </body>
+  <script src="vendors.js"></script>
+  <script src="{{page}}.js"></script>
+</html>

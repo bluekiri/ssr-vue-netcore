@@ -1,0 +1,62 @@
+{
+  "name": "vue-poc-ssr",
+  "description": "VueJs using service side render",
+  "version": "1.0.0",
+  "author": "Carlos Lisandra Osborne",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "npm run build && npm run start-server",
+    "build": "npm run build-client && npm run build-server",
+    "build-client": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "build-server": "cross-env NODE_ENV=production webpack --config webpack.server.config.js --progress --hide-modules",
+    "build-watch": "concurrently -k -r \"npm run build-client-watch\"  \"npm run build-server-watch\"",
+    "dev": "concurrently -k -r \"npm run build-client-watch\"  \"npm run build-server-watch\" \" npm run start-server \" ",
+    "build-client-watch": "cross-env NODE_ENV=development webpack --progress --hide-modules --watch",
+    "build-server-watch": "cross-env NODE_ENV=development webpack --config webpack.server.config.js --progress --hide-modules --watch",
+    "start-server": "nodemon server.js",
+    "test": "cross-env NODE_ENV=test mocha-webpack --webpack-config webpack.config.js --require test/setup.js test/**/*.spec.js",
+    "test-watch": "npm test -- --watch",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "express": "^4.16.2",
+    "vue": "^2.4.4",
+    "vue-router": "^3.0.1",
+    "vue-server-renderer": "^2.5.3",
+    "webpack-merge": "^4.1.1"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-stage-3": "^6.24.1",
+    "concurrently": "^4.0.1",
+    "cross-env": "^5.0.5",
+    "css-loader": "^0.28.7",
+    "eslint": "^5.5.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "expect": "^23.5.0",
+    "file-loader": "^1.1.4",
+    "jsdom": "^12.0.0",
+    "jsdom-global": "^3.0.2",
+    "mini-css-extract-plugin": "^0.4.2",
+    "mocha": "^5.2.0",
+    "mocha-webpack": "^2.0.0-beta.0",
+    "node-sass": "^4.9.2",
+    "nodemon": "^1.18.4",
+    "null-loader": "^0.1.1",
+    "sass-loader": "^6.0.6",
+    "vue-loader": "^15.4.0",
+    "vue-template-compiler": "^2.4.4",
+    "webpack": "^4.17.2",
+    "webpack-cli": "^3.1.0",
+    "webpack-node-externals": "^1.7.2"
+  }
+}
